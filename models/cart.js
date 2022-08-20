@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
     /**
@@ -13,23 +11,56 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Cart.init({
-    cartId: {
-      primaryKey: true, 
-      type: DataTypes.INTEGER,
+  Cart.init(
+    {
+      cartId: {
+        primaryKey: true,
+        require: true,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      productId: {
+        require: true,
+        type: DataTypes.INTEGER,
+      },
+      productImage: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      productName: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      price: {
+        require: true,
+        type: DataTypes.INTEGER,
+      },
+      quantity: {
+        require: true,
+        type: DataTypes.INTEGER,
+      },
+      desc: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      category: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      delivery: {
+        require: true,
+        type: DataTypes.STRING,
+      },
     },
-    userId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
-    productImage: DataTypes.STRING,
-    productName: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER,
-    desc: DataTypes.STRING,
-    category: DataTypes.STRING,
-    delivery: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Cart',
-  });
+    {
+      sequelize,
+      modelName: "Cart",
+      charset: "utf8",
+      collate: "utf8_general_ci", // 한글 저장되도록
+    }
+  );
   return Cart;
 };
