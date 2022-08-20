@@ -1,7 +1,6 @@
 {
   "name": "be",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "directories": {
     "test": "test"
@@ -27,5 +26,14 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.8",
     "sequelize": "^6.21.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hemi333/hanghae-w7-team6_BE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hemi333/hanghae-w7-team6_BE/issues"
+  },
+  "homepage": "https://github.com/hemi333/hanghae-w7-team6_BE#readme",
+  "description": ""
 }

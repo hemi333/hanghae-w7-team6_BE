@@ -1,0 +1,41 @@
+### 상품 등록(admin)
+POST http://localhost:3000/product
+Content-Type: application/json
+
+{
+    "productImage": "wine.img",
+    "productName": "레드와인",
+    "price": 30000,
+    "desc": "캬",
+    "category": "와인",
+    "delivery": "샛별 배송"
+}
+
+### 전체 상품 조회
+GET http://localhost:3000/product
+
+### 상품 삭제
+DELETE http://localhost:3000/product/3
+
+### 특정 상품 상세 조회
+GET http://localhost:3000/product/4
+
+### 카테고리 상품 상세 조회
+GET http://localhost:3000/product/search/과일
+
+### 장바구니 조회
+GET http://localhost:3000/cart
+
+### 장바구니 등록, 갯수 수정
+POST http://localhost:3000/cart/1
+Content-Type: application/json
+
+{
+    "productImage": "wine.img",
+    "productName": "레드와인",
+    "price": 30000,
+    "quantity": 1,
+    "desc": "캬",
+    "category": "와인",
+    "delivery": "샛별 배송"
+}
