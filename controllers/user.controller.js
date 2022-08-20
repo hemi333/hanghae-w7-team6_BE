@@ -1,6 +1,8 @@
 const UserServcice = require("../services/user.service");
 const jwt = require("jsonwebtoken");
+const GenerateToken = require("../middlewares/generate_token");
 require("dotenv").config();
+
 const regexUserId = /^[a-zA-Z0-9]{4,8}$/;
 const regexNickName = /^[가-힣a-zA-Z]{4,8}$/;
 const regexPassword = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
@@ -9,6 +11,7 @@ const regexEmail = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
 
 class UserController {
   userServcice = new UserServcice();
+  generateToken = new GenerateToken();
 
   //회원가입 API=====================ok
   join = async (req, res) => {
@@ -56,9 +59,11 @@ class UserController {
         email: userdata.email,
       };
 
-      const token = jwt.sign(payload, process.env.MYSECRET_KEY, {
-        expiresIn: "2d",
-      });
+      const token = await this.generateToken.generateToken(
+        payload,
+        process.env.MYSECRET_KEY,
+        "2d"
+      );
 
       res.json({
         token,
