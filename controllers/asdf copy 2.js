@@ -1,31 +1,36 @@
 const nodeMailer = require("nodemailer");
 require("dotenv").config();
 
-
-const main = async (req, res) => {
+const main = async (res, req) => {
+    const { email } = req.body;
+    console.log(email);
   const transporter = nodeMailer.createTransport({
-    // service: "naver",
-    host: "smtp.mailtrap.io",
+    service: "naver",
+    host: "smtp.naver.com",
     port: 587,
     auth: {
-      user: "b3c0106674759a",
-      pass: "2b6549307400b7",
+      user: `${process.env.MY_EMAIL}`,
+      pass: `${process.env.MY_EMAIL_PW}`,
     },
   });
 
+
+
   const option = {
-    from: "dyswns22@naver.com",
-    to: "dyswns22@naver.com",
-    subject: "Hello",
-    text: "Hello world?",
+    from: `"devmemory" <${process.env.MY_EMAIL}>`,
+    to: email,
+    subject: "메일 제목이 맞나요?",
+    text: "authNumber",
   };
 
   const info = await transporter.sendMail(option);
+  console.log("Message sent: %s", info.messageId);
 
   res.status(200).json({
-    info
+    status: "Success",
+    code: 200,
+    message: "Sent Auth Email",
   });
-
 };
 
 // const validation = (data) => {
