@@ -1,5 +1,4 @@
 const UserServcice = require("../services/user.service");
-const jwt = require("jsonwebtoken");
 const GenerateToken = require("../middlewares/generate_token");
 require("dotenv").config();
 
@@ -125,6 +124,12 @@ class UserController {
       });
     }
   };
+
+  //이메일 인증 API========================
+
+  
+  
 }
 
 module.exports = UserController;
+
