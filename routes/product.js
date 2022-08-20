@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const router = express.Router();
 const {
@@ -13,3 +15,4 @@ router.route("/:productId").get(getDetail).delete(deleteProduct);
 router.route("/search/:category").get(getCategory);
 
 module.exports = router;
+
