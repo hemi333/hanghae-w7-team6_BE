@@ -4,13 +4,13 @@ class UserServcice {
   userRepository = new UserRepository();
 
   //회원가입 데이터 저장 API
-  joinUser = async (userId, nickName, password, email) => {
-    await this.userRepository.createUser(userId, nickName, password, email);
+  joinUser = async (id, nickName, password, email, address) => {
+    await this.userRepository.createUser(id, nickName, password, email, address);
     return;
   };
   //로그인 API
-  loginUser = async (userId) => {
-    const userData = await this.userRepository.checkUserData(userId);
+  loginUser = async (id) => {
+    const userData = await this.userRepository.checkUserData(id);
     return userData;
   };
   //중복확인 API
