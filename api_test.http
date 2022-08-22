@@ -41,7 +41,6 @@ Content-Type: application/json
 ### 전체 상품 조회
 GET http://localhost:3000/product
 
-
 ### 상품 삭제
 DELETE http://localhost:3000/product/3
 
@@ -56,12 +55,12 @@ GET http://localhost:3000/product/search/과일
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0ODkxNCwiZXhwIjoxNjYxMzIxNzE0fQ.XPSNXBoHv4jiRcsmrCxnJ_-eBzodLCjbOuue4kBjF84
 
 ### 장바구니 등록, 갯수 수정
-POST http://localhost:3000/cart/1
+POST http://localhost:3000/cart/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE1MTg1NywiZXhwIjoxNjYxMzI0NjU3fQ.AOBRc7R81GVpJnmyEqd3x-gWLxTcMe89l6luHHmFiQA
 
 {
     "quantity": 1
