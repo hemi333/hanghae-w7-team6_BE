@@ -97,11 +97,11 @@ class UserController {
           });
         }
         if (!checkUserId) {
-          return res.status(400).json({
+          return res.status(200).json({
             Message: "사용 가능한 아이디 입니다.",
           });
         } else {
-          return res.status(200).json({
+          return res.status(400).json({
             errorMessage: "중복된 아이디 입니다.",
           });
         }
@@ -115,11 +115,11 @@ class UserController {
           });
         }
         if (!checkEmail) {
-          return res.status(400).json({
+          return res.status(200).json({
             Message: "사용 가능한 이메일 입니다.",
           });
         } else {
-          return res.status(200).json({
+          return res.status(400).json({
             errorMessage: "중복된 이메일 입니다.",
           });
         }
