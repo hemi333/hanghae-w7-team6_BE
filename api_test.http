@@ -3,8 +3,8 @@ POST http://localhost:3000/user/join
 Content-Type: application/json
 
 {
-  "userId":"test1",
-  "nickName":"nickname",
+  "userId":"test738",
+  "nickName":"nicknam1",
   "password":"password1",
   "email":"email@naver.com",
   "address":"한국 서울"
