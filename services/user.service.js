@@ -5,7 +5,7 @@ class UserServcice {
 
   //회원가입 데이터 저장 API
   joinUser = async (userId, nickName, password, email) => {
-    await this.userRepository.createUser(userId, nickName, password, email);
+    await this.userRepository.createUser(userId, nickName, password, email, address);
     return;
   };
   //로그인 API

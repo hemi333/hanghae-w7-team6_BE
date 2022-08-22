@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         require: true,
         type: DataTypes.STRING,
       },
+      address: {
+        require: true,
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

@@ -1,4 +1,4 @@
-const {User} = require("../models");
+const { User } = require("../models");
 
 class UserRepository {
   //회원가입 데이터 저장 API
@@ -8,6 +8,7 @@ class UserRepository {
       nickName,
       password,
       email,
+      address,
     });
     return user;
   };
