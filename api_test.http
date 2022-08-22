@@ -3,7 +3,7 @@ POST http://localhost:3000/user/join
 Content-Type: application/json
 
 {
-  "id":"test1",
+  "userId":"test1",
   "nickName":"nickname",
   "password":"password1",
   "email":"email@naver.com",
@@ -15,7 +15,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "id": "test1",
+  "userId": "test1",
   "password": "password1"
 }
 
@@ -55,15 +55,13 @@ GET http://localhost:3000/product/search/와인
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0ODkxNCwiZXhwIjoxNjYxMzIxNzE0fQ.XPSNXBoHv4jiRcsmrCxnJ_-eBzodLCjbOuue4kBjF84
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0MDMzLCJleHAiOjE2NjEzMjY4MzN9.RA-SJl_VCmfiN392X8G9wArDkvBB-hSEXsGe9ybw4tM
 
 
 ### 장바구니 등록, 갯수 수정
 POST http://localhost:3000/cart/2
 Content-Type: application/json
-
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjExNTE0MjEsImV4cCI6MTY2MTMyNDIyMX0.-Fmhx9VNI_5-1op-aC1PuMwxKDljMwrfubXRyjBp73I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0MDMzLCJleHAiOjE2NjEzMjY4MzN9.RA-SJl_VCmfiN392X8G9wArDkvBB-hSEXsGe9ybw4tM
 
 
 {
@@ -73,4 +71,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwib
 ### 장바구니 삭제
 DELETE http://localhost:3000/cart/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjExNTAxODgsImV4cCI6MTY2MTMyMjk4OH0.qo25dTdTnzlS1Z6aY6YD70KpF7UkBo2CJRhbT1iu6ds
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0MDMzLCJleHAiOjE2NjEzMjY4MzN9.RA-SJl_VCmfiN392X8G9wArDkvBB-hSEXsGe9ybw4tM

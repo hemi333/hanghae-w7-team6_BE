@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      userId: {
+      id: {
         primaryKey: true,
         require: true,
         type: DataTypes.INTEGER,
       },
-      id: {
+      userId: {
         require: true,
         type: DataTypes.STRING,
       },

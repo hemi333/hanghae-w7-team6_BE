@@ -7,11 +7,11 @@ const { Op } = require("sequelize");
 const getCart = async (req, res) => {
   try {
     // console.log(res.locals.user);
-    const { id } = res.locals.user;
+    const { userId } = res.locals.user;
 
     const cart = await Cart.findAll({
       where: {
-        id,
+        userId,
       },
     });
 
@@ -30,13 +30,13 @@ const getCart = async (req, res) => {
 // 장바구니 등록, 갯수 수정
 const postCart = async (req, res) => {
   // try {
-    const { id } = res.locals.user;
+    const { userId } = res.locals.user;
     console.log(res.locals.user);
     const { productId } = req.params;
     const { quantity } = req.body;
     const existCart = await Cart.findOne({
       where: {
-        userId:id,
+        userId,
         productId,
       },
     });
@@ -51,7 +51,7 @@ const postCart = async (req, res) => {
       });
 
       await Cart.create({
-        userId: id,
+        userId: userId,
         productId: productId,
         productImage: ProductData.productImage,
         productName: ProductData.productName,
@@ -74,12 +74,12 @@ const postCart = async (req, res) => {
 
 // 장바구니 삭제
 const deleteCart = async (req, res) => {
-  const { id } = res.locals.user;
+  const { userId } = res.locals.user;
   const { productId } = req.params;
 
   const existCart = await Cart.findOne({
     where: {
-      id,
+      userId,
       productId,
     },
   });
@@ -97,5 +97,3 @@ module.exports = {
   postCart,
   deleteCart,
 };
-
-//
