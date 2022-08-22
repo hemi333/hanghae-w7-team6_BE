@@ -1,46 +1,50 @@
-const nodeMailer = require("nodemailer");
-require("dotenv").config();
+const express = require('express')
 
-const main = async (res, req) => {
-    const { email } = req.body;
-    console.log(email);
-  const transporter = nodeMailer.createTransport({
-    service: "naver",
-    host: "smtp.naver.com",
-    port: 587,
-    auth: {
-      user: `${process.env.MY_EMAIL}`,
-      pass: `${process.env.MY_EMAIL_PW}`,
-    },
-  });
+const router = express.Router()
 
+const nodeMailer = require('nodemailer')
 
+router.post('/send', async (req, res) => {
+    const data = req.body
 
-  const option = {
-    from: `"devmemory" <${process.env.MY_EMAIL}>`,
-    to: email,
-    subject: "메일 제목이 맞나요?",
-    text: "authNumber",
-  };
+    if (validation(data)) {
+        try {
+            const result = await send(data)
 
-  const info = await transporter.sendMail(option);
-  console.log("Message sent: %s", info.messageId);
+            res.send({ message: 'Success to send a message', result })
+        } catch (e) {
+            res.send({ e })
+        }
+    } else {
+        res.send({ message: 'Failed to send a message', data })
+    }
+})
 
-  res.status(200).json({
-    status: "Success",
-    code: 200,
-    message: "Sent Auth Email",
-  });
-};
+const send = async (data) => {
+    const transporter = nodeMailer.createTransport({
+        service: 'naver',
+        host: 'smtp.naver.com',
+        port: 587,
+        auth: {
+            user: `${process.env.SENDER}`,
+            pass: `${process.env.PASSWORD}`
+        }
+    })
 
-// const validation = (data) => {
-//   return (
-//     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-//       data.email
-//     ) &&
-//     data.title != undefined &&
-//     data.message != undefined
-//   );
-// };
+    const option = {
+        from: `"devmemory" <${process.env.SENDER}>`,
+        to: data.email,
+        subject: data.title,
+        text: data.message
+    }
 
-module.exports = { main };
+    const info = await transporter.sendMail(option)
+
+    return info
+}
+
+const validation = (data) => {
+    return (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data.email)) && data.title != undefined && data.message != undefined
+}
+
+module.exports = router

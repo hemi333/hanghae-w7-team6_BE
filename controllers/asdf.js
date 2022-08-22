@@ -1,41 +1,40 @@
 const nodeMailer = require("nodemailer");
 require("dotenv").config();
 
+var generateRandom = function (min, max) {
+  var ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return ranNum;
+};
 
 const main = async (req, res) => {
+  const number = generateRandom(111111, 999999);
+  const { email } = req.body;
   const transporter = nodeMailer.createTransport({
-    // service: "naver",
-    host: "smtp.mailtrap.io",
+    service: "naver",
+    host: "smtp.naver.com",
     port: 587,
     auth: {
-      user: "b3c0106674759a",
-      pass: "2b6549307400b7",
+      user: `${process.env.MY_EMAIL_ID}`,
+      pass: `${process.env.MY_EMAIL_PW}`,
     },
   });
 
   const option = {
-    from: "dyswns22@naver.com",
-    to: "dyswns22@naver.com",
-    subject: "Hello",
-    text: "Hello world?",
+    from: `${process.env.MY_EMAIL}`,
+    to: email,
+    subject: "마켓 컬리 가입인증 메일",
+    text: "오른쪽 숫자 6자리를 입력해주세요 : " + number,
   };
 
   const info = await transporter.sendMail(option);
+  console.log("Message sent: %s", info.messageId);
 
   res.status(200).json({
-    info
+    status: "Success",
+    code: 200,
+    message: "Sent Auth Email",
+    html: "<b>Hello world?</b>", // html body
   });
-
 };
-
-// const validation = (data) => {
-//   return (
-//     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-//       data.email
-//     ) &&
-//     data.title != undefined &&
-//     data.message != undefined
-//   );
-// };
 
 module.exports = { main };
