@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.User);
     }
   }
   Cart.init(
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         require: true,
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       productId: {
         require: true,

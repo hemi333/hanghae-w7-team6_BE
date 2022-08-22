@@ -7,10 +7,17 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {}
+    static associate(models) {
+      this.hasMany(models.Cart);
+    }
   }
   User.init(
     {
+      id: {
+        primaryKey: true,
+        require: true,
+        type: DataTypes.INTEGER,
+      },
       userId: {
         require: true,
         type: DataTypes.STRING,
