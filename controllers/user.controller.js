@@ -6,7 +6,6 @@ const regexUserId = /^[a-zA-Z0-9]{4,8}$/;
 const regexNickName = /^[가-힣a-zA-Z]{4,8}$/;
 const regexPassword = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
 const regexEmail = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
-// const { generateToken } = require("../middlewares/generate_token");
 
 class UserController {
   userServcice = new UserServcice();
@@ -14,11 +13,11 @@ class UserController {
 
   //회원가입 API=====================ok
   join = async (req, res) => {
-    try {
-      const { userId, nickName, password, email } = req.body;
+    // try {
+      const { id, nickName, password, email, address } = req.body;
       //로그인 데이터 형식 check
 
-      const UserIdcheck = regexUserId.test(userId);
+      const UserIdcheck = regexUserId.test(id);
       const NickNamecheck = regexNickName.test(nickName);
       const Passwordcheck = regexPassword.test(password);
       const Emailcheck = regexEmail.test(email);
@@ -28,22 +27,28 @@ class UserController {
           errorMessage: "형식이 맞지 않습니다.",
         });
       }
-      await this.userServcice.joinUser(userId, nickName, password, email);
+      await this.userServcice.joinUser(
+        id,
+        nickName,
+        password,
+        email,
+        address
+      );
       res.status(200).json({
         message: "success",
       });
-    } catch (err) {
-      res.status(400).json({
-        errorMessage: "회원가입 오류",
-      });
-    }
+    // } catch (err) {
+    //   res.status(400).json({
+    //     errorMessage: "회원가입 오류",
+    //   });
+    // }
   };
 
   //로그인 API========================ok
   login = async (req, res) => {
     try {
-      const { userId, password } = req.body;
-      const userdata = await this.userServcice.loginUser(userId);
+      const { id, password } = req.body;
+      const userdata = await this.userServcice.loginUser(id);
 
       if (!userdata || userdata.password !== password) {
         res.status(400).json({
@@ -53,9 +58,10 @@ class UserController {
       }
 
       const payload = {
-        userId: userdata.userId,
+        id: userdata.id,
         nickName: userdata.nickName,
         email: userdata.email,
+        address: userdata.address,
       };
 
       const token = await this.generateToken.generateToken(
@@ -82,7 +88,7 @@ class UserController {
     let checkEmail;
 
     try {
-      if (key == "userId") {
+      if (key == "id") {
         checkUserId = await this.userServcice.userIddoubleCheck(value);
         const UserIdcheck = regexUserId.test(value);
         if (!UserIdcheck) {
@@ -92,7 +98,7 @@ class UserController {
         }
         if (!checkUserId) {
           return res.status(400).json({
-            errorMessage: "사용 가능한 아이디 입니다.",
+            Message: "사용 가능한 아이디 입니다.",
           });
         } else {
           return res.status(200).json({
@@ -110,7 +116,7 @@ class UserController {
         }
         if (!checkEmail) {
           return res.status(400).json({
-            errorMessage: "사용 가능한 이메일 입니다.",
+            Message: "사용 가능한 이메일 입니다.",
           });
         } else {
           return res.status(200).json({
@@ -126,10 +132,6 @@ class UserController {
   };
 
   //이메일 인증 API========================
-//
-  
-  
 }
 
 module.exports = UserController;
-

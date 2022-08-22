@@ -6,11 +6,12 @@ const { Op } = require("sequelize");
 // 장바구니 조회
 const getCart = async (req, res) => {
   try {
-    const { userId } = res.local.user;
+    // console.log(res.locals.user);
+    const { id } = res.locals.user;
 
     const cart = await Cart.findAll({
       where: {
-        userId,
+        id,
       },
     });
 
@@ -28,17 +29,18 @@ const getCart = async (req, res) => {
 
 // 장바구니 등록, 갯수 수정
 const postCart = async (req, res) => {
-  try {
-    const { userId } = res.locals.user;
+  // try {
+    const { id } = res.locals.user;
+    console.log(res.locals.user);
     const { productId } = req.params;
     const { quantity } = req.body;
-    console.log(userId);
     const existCart = await Cart.findOne({
       where: {
-        userId,
+        userId:id,
         productId,
       },
     });
+    
 
     if (existCart) {
       existCart.quantity = quantity;
@@ -47,11 +49,9 @@ const postCart = async (req, res) => {
       const ProductData = await Product.findOne({
         where: { productId },
       });
-      console.log(ProductData.delivery);
-      console.log(userId);
 
       await Cart.create({
-        userId: userId,
+        userId: id,
         productId: productId,
         productImage: ProductData.productImage,
         productName: ProductData.productName,
@@ -65,21 +65,21 @@ const postCart = async (req, res) => {
     res
       .status(201)
       .json({ success: true, message: "장바구니를 등록 및 수정 하였습니다." });
-  } catch (error) {
-    const message = `${req.method} ${req.originalUrl} : ${error.message}`;
-    console.log(message);
-    res.status(400).json({ errorMessage: "장바구니 등록에 실패하였습니다." });
-  }
+  // } catch (error) {
+  //   const message = `${req.method} ${req.originalUrl} : ${error.message}`;
+  //   console.log(message);
+  //   res.status(400).json({ errorMessage: "장바구니 등록에 실패하였습니다." });
+  // }
 };
 
 // 장바구니 삭제
 const deleteCart = async (req, res) => {
-  const { userId } = res.locals.user;
+  const { id } = res.locals.user;
   const { productId } = req.params;
 
   const existCart = await Cart.findOne({
     where: {
-      userId,
+      id,
       productId,
     },
   });
