@@ -2,9 +2,9 @@ const { User } = require("../models");
 
 class UserRepository {
   //회원가입 데이터 저장 API
-  createUser = async (userId, nickName, password, email) => {
+  createUser = async (id, nickName, password, email, address) => {
     const user = await User.create({
-      userId,
+      id,
       nickName,
       password,
       email,
@@ -14,14 +14,14 @@ class UserRepository {
   };
 
   //로그인 API
-  checkUserData = async (userId) => {
-    const user = await User.findOne({ where: { userId: userId } });
+  checkUserData = async (id) => {
+    const user = await User.findOne({ where: { id: id } });
     return user;
   };
 
   //중복확인 API
   doubleCheckUserId = async (value) => {
-    const user = await User.findOne({ where: { userId: value } });
+    const user = await User.findOne({ where: { id: value } });
     return user;
   };
 

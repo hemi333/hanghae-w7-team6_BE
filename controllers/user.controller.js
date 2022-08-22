@@ -13,11 +13,11 @@ class UserController {
 
   //회원가입 API=====================ok
   join = async (req, res) => {
-    try {
-      const { userId, nickName, password, email, address } = req.body;
+    // try {
+      const { id, nickName, password, email, address } = req.body;
       //로그인 데이터 형식 check
 
-      const UserIdcheck = regexUserId.test(userId);
+      const UserIdcheck = regexUserId.test(id);
       const NickNamecheck = regexNickName.test(nickName);
       const Passwordcheck = regexPassword.test(password);
       const Emailcheck = regexEmail.test(email);
@@ -28,7 +28,7 @@ class UserController {
         });
       }
       await this.userServcice.joinUser(
-        userId,
+        id,
         nickName,
         password,
         email,
@@ -37,18 +37,18 @@ class UserController {
       res.status(200).json({
         message: "success",
       });
-    } catch (err) {
-      res.status(400).json({
-        errorMessage: "회원가입 오류",
-      });
-    }
+    // } catch (err) {
+    //   res.status(400).json({
+    //     errorMessage: "회원가입 오류",
+    //   });
+    // }
   };
 
   //로그인 API========================ok
   login = async (req, res) => {
     try {
-      const { userId, password } = req.body;
-      const userdata = await this.userServcice.loginUser(userId);
+      const { id, password } = req.body;
+      const userdata = await this.userServcice.loginUser(id);
 
       if (!userdata || userdata.password !== password) {
         res.status(400).json({
@@ -58,7 +58,7 @@ class UserController {
       }
 
       const payload = {
-        userId: userdata.userId,
+        id: userdata.id,
         nickName: userdata.nickName,
         email: userdata.email,
         address: userdata.address,
@@ -88,7 +88,7 @@ class UserController {
     let checkEmail;
 
     try {
-      if (key == "userId") {
+      if (key == "id") {
         checkUserId = await this.userServcice.userIddoubleCheck(value);
         const UserIdcheck = regexUserId.test(value);
         if (!UserIdcheck) {
