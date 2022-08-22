@@ -12,7 +12,7 @@ module.exports = {
         },
         userId: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
         },
         productId: {
           allowNull: false,
@@ -44,7 +44,7 @@ module.exports = {
         },
         delivery: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
         },
         createdAt: {
           allowNull: false,

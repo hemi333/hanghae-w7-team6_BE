@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
-const MYSQL_KEY = process.env.MYSQL_KEY;
+// const MYSQL_KEY = process.env.MYSQL_KEY;
 
 module.exports = (req, res, next) => {
     
   // Client 요청의 cookies 객체 중 토큰을 authorization으로 읽어들여서, 공백을 기준으로 두 조각으로 나눔
   const { authorization } = req.headers;
-  console.log(authorization, "인증확인");
+  // console.log(authorization, "인증확인");
   const [authType, authToken] = (authorization || "").split(" ");
 
 
@@ -21,7 +21,7 @@ try{
     // 뒤쪽 'authToken'을 우리 MYSQL_KEY를 가지고 인증해보고 에러 없으면, user 정보를 토근으로 다음 next으로 넘겨줌
     jwt.verify(
       authToken,
-      MYSQL_KEY,
+      process.env.MYSECRET_KEY,
 
       async (error, decoded) => {
         // 인증 결과 에러가 나타나면 클라이언트와 서버에 모두 에러를 던지고 미들웨어 종료

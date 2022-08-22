@@ -1,4 +1,5 @@
 const { Cart } = require("../models");
+const { Product } = require("../models");
 const { User } = require("../models");
 const { Op } = require("sequelize");
 
@@ -24,10 +25,10 @@ const getCart = async (req, res) => {
 // 장바구니 등록, 갯수 수정
 const postCart = async (req, res) => {
   try {
-    const { userId } = res.local.user;
+    const { userId } = res.locals.user;
     const { productId } = req.params;
     const { quantity } = req.body;
-
+    console.log(userId);
     const existCart = await Cart.findOne({
       where: {
         userId,
@@ -38,15 +39,28 @@ const postCart = async (req, res) => {
     if (existCart) {
       existCart.quantity = quantity;
       await existCart.save();
-
     } else {
+      const ProductData = await Product.findOne({
+        where: { productId },
+      });
+      console.log(ProductData.delivery);
+      console.log(userId);
+
       await Cart.create({
-        quantity,
+        userId: userId,
+        productId: productId,
+        productImage: ProductData.productImage,
+        productName: ProductData.productName,
+        price: ProductData.price,
+        quantity: quantity,
+        desc: ProductData.desc,
+        category: ProductData.category,
+        delivery: ProductData.delivery,
       });
     }
     res
       .status(201)
-      .json({ success: true, message: "장바구니를 등록하였습니다." });
+      .json({ success: true, message: "장바구니를 등록 및 수정 하였습니다." });
   } catch (error) {
     const message = `${req.method} ${req.originalUrl} : ${error.message}`;
     console.log(message);
@@ -69,7 +83,9 @@ const deleteCart = async (req, res) => {
   if (existCart) {
     await existCart.destroy();
   }
-  res.status(200).json({ success: true, message: "장바구니 상품을 삭제하였습니다." });
+  res
+    .status(200)
+    .json({ success: true, message: "장바구니 상품을 삭제하였습니다." });
 };
 
 module.exports = {

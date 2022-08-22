@@ -5,8 +5,9 @@ const { main } = require("../controllers/asdf");
 const userController = new UserController();
 
 router.post("/join", userController.join);
-router.post("/login",  userController.login);
+router.post("/login", userController.login);
 router.post("/auth", userController.doubleCheck);
 router.post("/email", main);
 
 module.exports = router;
+

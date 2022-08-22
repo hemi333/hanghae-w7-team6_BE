@@ -1,3 +1,27 @@
+### 회원가입
+POST http://localhost:3000/user/join
+Content-Type: application/json
+{
+  "userId":"userId1",
+  "nickName":"nickname",
+  "password":"password1",
+  "email":"email@naver.com"
+}
+
+### 로그인
+POST http://localhost:3000/user/join
+Content-Type: application/json
+{
+  "userId": "userId1",
+  "password": "password1"
+}
+
+### 중복체크
+
+
+
+# ========================================================
+
 ### 상품 등록(admin)
 POST http://localhost:3000/product
 Content-Type: application/json
@@ -23,6 +47,8 @@ GET http://localhost:3000/product/4
 ### 카테고리 상품 상세 조회
 GET http://localhost:3000/product/search/과일
 
+# ========================================================
+
 ### 장바구니 조회
 GET http://localhost:3000/cart
 
@@ -31,11 +57,8 @@ POST http://localhost:3000/cart/1
 Content-Type: application/json
 
 {
-    "productImage": "wine.img",
-    "productName": "레드와인",
-    "price": 30000,
-    "quantity": 1,
-    "desc": "캬",
-    "category": "와인",
-    "delivery": "샛별 배송"
+    "quantity": 3,
 }
+
+### 장바구니 삭제
+DELETE http://localhost:3000/cart/1
