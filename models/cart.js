@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         require: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       productId: {
         require: true,

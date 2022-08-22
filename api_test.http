@@ -3,7 +3,7 @@ POST http://localhost:3000/user/join
 Content-Type: application/json
 
 {
-  "userId":"test1",
+  "id":"test1",
   "nickName":"nickname",
   "password":"password1",
   "email":"email@naver.com",
@@ -15,7 +15,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "userId": "test1",
+  "id": "test1",
   "password": "password1"
 }
 
@@ -46,22 +46,22 @@ GET http://localhost:3000/product
 DELETE http://localhost:3000/product/3
 
 ### 특정 상품 상세 조회
-GET http://localhost:3000/product/4
+GET http://localhost:3000/product/1
 
 ### 카테고리 상품 상세 조회
-GET http://localhost:3000/product/search/과일
+GET http://localhost:3000/product/search/와인
 
 # ========================================================
 
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjExNTAxODgsImV4cCI6MTY2MTMyMjk4OH0.qo25dTdTnzlS1Z6aY6YD70KpF7UkBo2CJRhbT1iu6ds
 
 ### 장바구니 등록, 갯수 수정
 POST http://localhost:3000/cart/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjExNTE0MjEsImV4cCI6MTY2MTMyNDIyMX0.-Fmhx9VNI_5-1op-aC1PuMwxKDljMwrfubXRyjBp73I
 
 {
     "quantity": 1
@@ -70,4 +70,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0M
 ### 장바구니 삭제
 DELETE http://localhost:3000/cart/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjExNTAxODgsImV4cCI6MTY2MTMyMjk4OH0.qo25dTdTnzlS1Z6aY6YD70KpF7UkBo2CJRhbT1iu6ds
