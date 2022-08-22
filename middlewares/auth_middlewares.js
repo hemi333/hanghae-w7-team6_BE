@@ -35,7 +35,7 @@ try{
 
         // 에러없이 잘 인증 된거면, 인증된 사용자이므로 decoding 된 decode 객체가 생김
         // 이 decoded 객체로 DB로부터 사용자 정보를 빼 와서 토큰을 res.locals(전역 객체) 위치에 반환
-        let user = await User.findOne({ where: { id: decoded.id } });
+        let user = await User.findOne({ where: { userId: decoded.userId } });
 
         res.locals.user = user;
         console.log(res.locals.user);
@@ -50,5 +50,3 @@ try{
     return;
   }
 };
-
-//
