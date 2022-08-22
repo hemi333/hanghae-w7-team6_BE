@@ -7,7 +7,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {}
+    static associate(models) {
+      this.hasMany(models.Cart, {
+        foreignKey: "userId",
+        sourceKey: "userId"
+      });
+    }
   }
   User.init(
     {
@@ -24,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       email: {
+        require: true,
+        type: DataTypes.STRING,
+      },
+      address: {
         require: true,
         type: DataTypes.STRING,
       },
