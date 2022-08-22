@@ -15,7 +15,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "userId": "userId1",
+  "userId": "test1",
   "password": "password1"
 }
 
@@ -56,18 +56,18 @@ GET http://localhost:3000/product/search/과일
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VySWQxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiaWF0IjoxNjYxMTI5ODIzLCJleHAiOjE2NjEzMDI2MjN9.WrTlJtXfbR6n1_QHArpvkyQuGy9XQCTnGmtHuP7nu5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
 
 ### 장바구니 등록, 갯수 수정
 POST http://localhost:3000/cart/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VySWQxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiaWF0IjoxNjYxMTI5ODIzLCJleHAiOjE2NjEzMDI2MjN9.WrTlJtXfbR6n1_QHArpvkyQuGy9XQCTnGmtHuP7nu5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
 
 {
-    "quantity": 3
+    "quantity": 1
 }
 
 ### 장바구니 삭제
 DELETE http://localhost:3000/cart/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VySWQxIiwibmlja05hbWUiOiJuaWNrbmFtZSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiaWF0IjoxNjYxMTI5ODIzLCJleHAiOjE2NjEzMDI2MjN9.WrTlJtXfbR6n1_QHArpvkyQuGy9XQCTnGmtHuP7nu5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImlhdCI6MTY2MTE0NDIyMSwiZXhwIjoxNjYxMzE3MDIxfQ.t63Z3XZYEe7yTmWMGvgXe_I2Hth0AG6LqkpAj9WFH7Y
