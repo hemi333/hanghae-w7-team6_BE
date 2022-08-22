@@ -13,7 +13,11 @@ const getCart = async (req, res) => {
         userId,
       },
     });
-    res.json({ cart });
+
+    if(!cart) {
+      return res.status(400).send({ message: "장바구니에 담긴 상품이 없습니다." })
+    }
+    res.status(200).json({ cart });
   } catch (error) {
     console.log(`${req.method} ${req.originalUrl} : ${error.message}`);
     return res.status(400).json({
