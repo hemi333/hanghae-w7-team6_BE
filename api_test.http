@@ -3,9 +3,9 @@ POST http://localhost:3000/user/join
 Content-Type: application/json
 
 {
-  "userId":"test738",
-  "nickName":"nicknam1",
-  "password":"password1",
+  "userId":"asd12",
+  "nickName":"nicknam",
+  "password":"asd123",
   "email":"email@naver.com",
   "address":"한국 서울"
 }
@@ -15,8 +15,8 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "userId": "test1",
-  "password": "password1"
+  "userId": "asd12",
+  "password": "asd123"
 }
 
 ### 중복체크
@@ -31,10 +31,10 @@ Content-Type: application/json
 
 {
     "productImage": "wine.img",
-    "productName": "레드와인",
-    "price": 30000,
-    "desc": "캬",
-    "category": "와인",
+    "productName": "토마토",
+    "price": 20000,
+    "desc": "좋은그릇",
+    "category": "식기",
     "delivery": "샛별 배송"
 }
 
@@ -55,18 +55,19 @@ GET http://localhost:3000/product/search/와인
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0OTcxLCJleHAiOjE2NjEzMjc3NzF9.mXDqATiESIoyFfNQ57ub-j3gSoeoROJ3EQ2U3xNj2Wk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhc2QxMiIsIm5pY2tOYW1lIjoibmlja25hbSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjEyMTg3OTksImV4cCI6MTY2MTM5MTU5OX0.6wpYeZ95ThCcmZ9_wZwhSPRjLbSsnGvX8kWxFmKRm4U
 
 
 ### 장바구니 등록, 갯수 수정
-POST http://localhost:3000/cart/1
+POST http://localhost:3000/cart/4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0OTcxLCJleHAiOjE2NjEzMjc3NzF9.mXDqATiESIoyFfNQ57ub-j3gSoeoROJ3EQ2U3xNj2Wk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhc2QxMiIsIm5pY2tOYW1lIjoibmlja25hbSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjEyMTg3OTksImV4cCI6MTY2MTM5MTU5OX0.6wpYeZ95ThCcmZ9_wZwhSPRjLbSsnGvX8kWxFmKRm4U
 
 
 {
     "quantity": 1
 }
+
 
 ### 장바구니 삭제
 DELETE http://localhost:3000/cart/1

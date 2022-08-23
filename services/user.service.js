@@ -16,7 +16,6 @@ class UserServcice {
     const Passwordcheck = regexPassword.test(password);
     const Emailcheck = regexEmail.test(email);
     if (!UserIdcheck || !NickNamecheck || !Passwordcheck || !Emailcheck) {
-      console.log(NickNamecheck);
       return {
         success: false,
         errorMessage: "형식이 맞지 않습니다.",
