@@ -29,7 +29,7 @@ const getCart = async (req, res) => {
 
 // 장바구니 등록, 갯수 수정
 const postCart = async (req, res) => {
-  // try {
+  try {
     const { userId } = res.locals.user;
     console.log(res.locals.user);
     const { productId } = req.params;
@@ -65,11 +65,11 @@ const postCart = async (req, res) => {
     res
       .status(201)
       .json({ success: true, message: "장바구니를 등록 및 수정 하였습니다." });
-  // } catch (error) {
-  //   const message = `${req.method} ${req.originalUrl} : ${error.message}`;
-  //   console.log(message);
-  //   res.status(400).json({ errorMessage: "장바구니 등록에 실패하였습니다." });
-  // }
+  } catch (error) {
+    const message = `${req.method} ${req.originalUrl} : ${error.message}`;
+    console.log(message);
+    res.status(400).json({ errorMessage: "장바구니 등록에 실패하였습니다." });
+  }
 };
 
 // 장바구니 삭제

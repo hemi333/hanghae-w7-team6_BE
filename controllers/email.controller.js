@@ -1,11 +1,13 @@
 const nodeMailer = require("nodemailer");
 require("dotenv").config();
 
+
 let authnumber = [];
+let withUserid = [];
 
 //인증 메일 전송====================================================================
 const sendAuthMail = async (req, res) => {
-  const { email } = req.body;
+  const { email, userId } = req.body;
   try {
     const generateRandom = function (min, max) {
       const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -17,7 +19,9 @@ const sendAuthMail = async (req, res) => {
     );
 
     authnumber.push(number);
+    withUserid.push(userId);
     console.log(authnumber);
+    console.log(withUserid);
 
     const transporter = nodeMailer.createTransport({
       service: "naver",
@@ -54,11 +58,12 @@ const sendAuthMail = async (req, res) => {
 //인증 번호 확인====================================================================
 
 const authEmailNumberCheck = async (req, res) => {
-  const { authEmailNumber } = req.body;
+  const { authEmailNumber, userId } = req.body;
   try {
     console.log(authnumber);
+    console.log(withUserid);
     console.log(authEmailNumber);
-    if (authnumber.includes(authEmailNumber)) {
+    if (authnumber.includes(authEmailNumber) && withUserid.includes(userId)) {
       res.status(200).json({
         success: true,
         message: "인증번호가 일치합니다.",
