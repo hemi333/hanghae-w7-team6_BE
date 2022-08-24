@@ -1,12 +1,11 @@
 const { Cart } = require("../models");
 const { Product } = require("../models");
-const { User } = require("../models");
-const { Op } = require("sequelize");
+// const { User } = require("../models");
+// const { Op } = require("sequelize");
 
 // 장바구니 조회
 const getCart = async (req, res) => {
   try {
-    // console.log(res.locals.user);
     const { userId } = res.locals.user;
 
     const cart = await Cart.findAll({
@@ -15,8 +14,10 @@ const getCart = async (req, res) => {
       },
     });
 
-    if(!cart) {
-      return res.status(400).send({ message: "장바구니에 담긴 상품이 없습니다." })
+    if (!cart) {
+      return res
+        .status(400)
+        .send({ message: "장바구니에 담긴 상품이 없습니다." });
     }
     res.status(200).json({ cart });
   } catch (error) {
@@ -40,7 +41,6 @@ const postCart = async (req, res) => {
         productId,
       },
     });
-    
 
     if (existCart) {
       existCart.quantity = quantity;
