@@ -16,6 +16,10 @@ const postProduct = async (req, res) => {
     });
     res.status(201).json({ success: true, message: "상품을 등록하였습니다." });
   } catch (error) {
+    //`${req.method} ${req.originalUrl} : ${error.message}`
+    //req.method= 어떤 메소드에서 오류인지
+    //req.originalUrl= 어떤 파일에서 나는 오류인지
+    //req.message= 에러에 관한 메세지
     const message = `${req.method} ${req.originalUrl} : ${error.message}`;
     console.log(message);
     res.status(400).json({ errorMessage: "상품 등록에 실패하였습니다." });

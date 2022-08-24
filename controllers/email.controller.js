@@ -1,14 +1,15 @@
+//nodemailer 불러오기
 const nodeMailer = require("nodemailer");
 require("dotenv").config();
 
-
-let authnumber = [];
-let withUserid = [];
+let authnumberTemSave = []; //인증번호 임시저장
+let useridTemSave = []; //유저아이디 임시저장
 
 //인증 메일 전송====================================================================
 const sendAuthMail = async (req, res) => {
   const { email, userId } = req.body;
   try {
+    //랜덤 6자기 인증번호 생성
     const generateRandom = function (min, max) {
       const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
       return ranNum;
@@ -18,32 +19,34 @@ const sendAuthMail = async (req, res) => {
       parseInt(process.env.SECRET_NUM2)
     );
 
-    authnumber.push(number);
-    withUserid.push(userId);
+    authnumberTemSave.unshift(number);
+    useridTemSave.unshift(userId);
     console.log(authnumber);
     console.log(withUserid);
 
     const transporter = nodeMailer.createTransport({
-      service: "naver",
-      host: "smtp.naver.com",
-      port: 587,
+      //어떤서비스이용(여기선 네이버)
+      service: "naver", //서비스
+      host: "smtp.naver.com", //SMTP입력
+      port: 587, //SMTP HOST 입력
       auth: {
-        user: `${process.env.MY_EMAIL_ID}`,
-        pass: `${process.env.MY_EMAIL_PW}`,
+        user: `${process.env.MY_EMAIL_ID}`, //네이버 아이디(@naver.com뺴고)
+        pass: `${process.env.MY_EMAIL_PW}`, //네이버 비번
       },
     });
 
     const option = {
-      from: `${process.env.MY_EMAIL}`,
-      to: email,
-      subject: "마켓 컬리 가입인증 메일",
-      text: "오른쪽 숫자 6자리를 입력해주세요 : " + number,
+      from: `"마켓 컬리 가입인증"${process.env.MY_EMAIL}`, //메일 보내는 사람
+      to: email, //받는 사람 이메일
+      subject: "마켓 컬리 가입인증 메일", //메일제목
+      text: "오른쪽 숫자 6자리를 입력해주세요 : " + number, //메일내용
     };
 
     const info = await transporter.sendMail(option);
     console.log("Message sent: %s", info.messageId);
 
     res.status(200).json({
+      success: true,
       message: "인증이메일 발송완료",
     });
   } catch (err) {
@@ -60,10 +63,15 @@ const sendAuthMail = async (req, res) => {
 const authEmailNumberCheck = async (req, res) => {
   const { authEmailNumber, userId } = req.body;
   try {
-    console.log(authnumber);
-    console.log(withUserid);
+    console.log(authnumberTemSave);
+    console.log(useridTemSave);
     console.log(authEmailNumber);
-    if (authnumber.includes(authEmailNumber) && withUserid.includes(userId)) {
+    
+    const emailIndex = authnumberTemSave.indexOf(authEmailNumber);
+    const useridIndex = useridTemSave.indexOf(userId);
+    if ((emailIndex === useridIndex && emailIndex, useridIndex !== -1)) {
+      delete authnumber[emailIndex];
+      delete withUserid[useridIndex];
       res.status(200).json({
         success: true,
         message: "인증번호가 일치합니다.",

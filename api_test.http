@@ -3,7 +3,7 @@ POST http://localhost:3000/user/join
 Content-Type: application/json
 
 {
-  "userId":"asd12",
+  "userId":"qwe123",
   "nickName":"nicknam",
   "password":"asd123",
   "email":"email@naver.com",
@@ -15,13 +15,27 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "userId": "asd12",
+  "userId": "qwe123",
   "password": "asd123"
 }
 
 ### 중복체크
+POST http://localhost:3000/user/auth
+Content-Type: application/json
 
+{
+  "key": "userId",
+  "value": "qwe123"
+}
 
+### 중복체크
+POST http://localhost:3000/user/auth
+Content-Type: application/json
+
+{
+  "key": "email",
+  "value": "email@naver.com"
+}
 
 # ========================================================
 
@@ -42,7 +56,7 @@ Content-Type: application/json
 GET http://localhost:3000/product
 
 ### 상품 삭제
-DELETE http://localhost:3000/product/3
+DELETE http://localhost:3000/product/17
 
 ### 특정 상품 상세 조회
 GET http://localhost:3000/product/1
@@ -55,13 +69,13 @@ GET http://localhost:3000/product/search/와인
 ### 장바구니 조회
 GET http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhc2QxMiIsIm5pY2tOYW1lIjoibmlja25hbSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjEyMTg3OTksImV4cCI6MTY2MTM5MTU5OX0.6wpYeZ95ThCcmZ9_wZwhSPRjLbSsnGvX8kWxFmKRm4U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJxd2UxMjMiLCJuaWNrTmFtZSI6Im5pY2tuYW0iLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMzI3NTcxLCJleHAiOjE2NjE1MDAzNzF9.qR2n1xgzbUUWDmE-LEEAJ9sEVyeNSr2i3JWJotmVHZA
 
 
 ### 장바구니 등록, 갯수 수정
-POST http://localhost:3000/cart/4
+POST http://localhost:3000/cart/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhc2QxMiIsIm5pY2tOYW1lIjoibmlja25hbSIsImVtYWlsIjoiZW1haWxAbmF2ZXIuY29tIiwiYWRkcmVzcyI6Iu2VnOq1rSDshJzsmrgiLCJpYXQiOjE2NjEyMTg3OTksImV4cCI6MTY2MTM5MTU5OX0.6wpYeZ95ThCcmZ9_wZwhSPRjLbSsnGvX8kWxFmKRm4U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJxd2UxMjMiLCJuaWNrTmFtZSI6Im5pY2tuYW0iLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMzI3NTcxLCJleHAiOjE2NjE1MDAzNzF9.qR2n1xgzbUUWDmE-LEEAJ9sEVyeNSr2i3JWJotmVHZA
 
 
 {
@@ -70,6 +84,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhc2QxM
 
 
 ### 장바구니 삭제
-DELETE http://localhost:3000/cart/1
+DELETE http://localhost:3000/cart/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MSIsIm5pY2tOYW1lIjoibmlja25hbWUiLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMTU0ODk1LCJleHAiOjE2NjEzMjc2OTV9.2kkzqftmI40RJGxmP3UpYd5zyEy2Y_w-JdvnNc61Xhc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJxd2UxMjMiLCJuaWNrTmFtZSI6Im5pY2tuYW0iLCJlbWFpbCI6ImVtYWlsQG5hdmVyLmNvbSIsImFkZHJlc3MiOiLtlZzqta0g7ISc7Jq4IiwiaWF0IjoxNjYxMzI3NTcxLCJleHAiOjE2NjE1MDAzNzF9.qR2n1xgzbUUWDmE-LEEAJ9sEVyeNSr2i3JWJotmVHZA
