@@ -16,9 +16,10 @@ module.exports = (app) => {
       // profile: 카카오가 보내준 유저 정보. profile의 정보를 바탕으로 회원가입
       async (accessToken, refreshToken, profile, done) => {
         try {
+            console.log(profile)
           const exUser = await User.findOne({
             // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
-            where: { userId: profile.id /*providerType: 'kakao'*/ },
+            where: { snsId: profile.id, providerType: 'kakao' },
           });
           // 이미 가입된 카카오 프로필이면 성공
           if (exUser) {
@@ -28,8 +29,8 @@ module.exports = (app) => {
             const newUser = await User.create({
               email: profile._json && profile._json.kakao_account_email,
               nickname: profile.displayName,
-              userId: profile.id,
-              // providerType: "kakao",
+              snsId: profile.id,
+              providerType: "kakao",
             });
             done(null, newUser); // 회원가입하고 로그인 인증 완료
           }
@@ -40,10 +41,4 @@ module.exports = (app) => {
       }
     )
   );
-  passport.serializeUser((user, done) => {
-    done(null, user);
-  });
-  passport.deserializeUser((user, done) => {
-    done(null, user);
-  });
 };
